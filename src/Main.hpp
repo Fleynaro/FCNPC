@@ -53,7 +53,6 @@
 #include <sdk/plugin.h>
 #include <raknet/BitStream.h>
 #include "vendor/MapAndreas/MapAndreas.h"
-#include "vendor/ColAndreas/DynamicWorld.h"
 #include <subhook/subhook.h>
 #include <strlcpy/strlcpy.h>
 // ExceptionHandler includes
@@ -91,7 +90,6 @@
 // Scripting includes
 #include "Natives.hpp"
 #include "vendor/MapAndreas/natives.h"
-#include "vendor/ColAndreas/Natives.h"
 
 // externals
 extern CServer      *pServer;

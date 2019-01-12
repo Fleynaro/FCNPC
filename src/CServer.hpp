@@ -70,7 +70,6 @@ private:
 	CNodeManager *m_pNodeManager;
 	CRecordManager *m_pRecordManager;
 	CMapAndreas *m_pMapAndreas;
-	ColAndreasWorld *m_pColAndreas;
 	CMovePath *m_pMovePath;
 	DWORD m_dwUpdateRate;
 	bool m_bCrashLogCreation;

@@ -33,6 +33,7 @@
 #ifndef YSF_RPCS_H
 #define YSF_RPCS_H
 
+extern int RPC_SetPlayerPos;
 extern int RPC_ShowPlayerForPlayer;
 extern int RPC_SetPlayerSkillLevel;
 extern int RPC_ApplyAnimation;

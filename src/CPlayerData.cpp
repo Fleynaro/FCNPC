@@ -722,22 +722,24 @@ void CPlayerData::Process()
 		} else if (m_bMoving) {
 			DWORD dwMoveTick = dwThisTick - m_dwMoveStartTime;
 
-			if (dwMoveTick < m_dwMoveTime) {
-				CVector vecNewPosition;
-				CVector vecVelocity;
+			if (dwMoveTick < m_dwMoveTime + m_dwMoveStopDelay2) {
+				if (dwMoveTick < m_dwMoveTime) {
+					CVector vecNewPosition;
+					CVector vecVelocity;
 
-				GetPosition(&vecNewPosition);
-				GetVelocity(&vecVelocity);
+					GetPosition(&vecNewPosition);
+					GetVelocity(&vecVelocity);
 
-				int iTickDiff = dwThisTick - m_dwMoveTickCount;
-				if (iTickDiff > 0) {
-					vecNewPosition += vecVelocity * static_cast<float>(iTickDiff);
+					int iTickDiff = dwThisTick - m_dwMoveTickCount;
+					if (iTickDiff > 0) {
+						vecNewPosition += vecVelocity * static_cast<float>(iTickDiff);
+					}
+
+					UpdateHeightPos(&vecNewPosition);
+					SetPosition(vecNewPosition);
+
+					m_dwMoveTickCount = dwThisTick;
 				}
-
-				UpdateHeightPos(&vecNewPosition);
-				SetPosition(vecNewPosition);
-
-				m_dwMoveTickCount = dwThisTick;
 			} else if (IsMovingByMovePath(m_iMovePath)) {
 				int iChangePath = CCallbackManager::OnFinishMovePathPoint(m_wPlayerId, m_iMovePath, m_iMovePoint);
 
@@ -749,9 +751,16 @@ void CPlayerData::Process()
 				if (vecPoint && iChangePath) {
 					m_iMovePoint++;
 					UpdateMovingData(*vecPoint, m_fMoveRadius, m_bMoveSetAngle, m_fMoveSpeed, m_fDistOffset);
+					if (m_dwMoveTime > 0 && m_iMovePoint == pServer->GetMovePath()->GetPoints(m_iMovePath)->size() - 1) {
+						m_dwMoveStopDelay2 += m_dwMoveStopDelay;
+					}
 				} else {
 					int iMovePath = m_iMovePath;
 					StopMoving();
+					ShowForStreamedPlayers();
+					if (m_iMoveType != MOVE_SPEED_WALK) {
+						ApplyAnimation("PED", "RUN_STOP", 7.1, false, true, true, false, 500);
+					}
 					CCallbackManager::OnFinishMovePath(m_wPlayerId, iMovePath);
 				}
 			} else if (m_bPlayingNode && !m_bIsPlayingNodePaused) {
@@ -1687,6 +1696,7 @@ bool CPlayerData::GoTo(const CVector &vecPoint, int iType, int iMode, int iPathf
 	SetMovePathfinding(iPathfinding);
 	m_iMoveType = iType;
 	m_dwMoveStopDelay = dwStopDelay;
+	m_dwMoveStopDelay2 = 0;
 	return true;
 }
 
@@ -1796,6 +1806,7 @@ void CPlayerData::StopMoving()
 	m_dwMoveTime = 0;
 	m_dwMoveStartTime = 0;
 	memset(&m_vecDestination, 0, sizeof(CVector));
+	//ShowForStreamedPlayers();
 }
 
 bool CPlayerData::IsMoving()

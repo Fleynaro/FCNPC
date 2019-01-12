@@ -64,7 +64,12 @@ public:
 
 	float Length ( void ) const
 	{
-		return sqrt ( (fX * fX) + (fY * fY) + (fZ * fZ) );
+		return sqrt ( this->Length2() );
+	}
+
+	float Length2( void ) const
+	{
+		return (fX * fX) + (fY * fY) + (fZ * fZ);
 	}
 
 	float DotProduct ( const CVector * param ) const

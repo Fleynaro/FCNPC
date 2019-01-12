@@ -132,7 +132,7 @@ public:
 	void ApplyAnimation(char *szAnimationLib, char *szAnimationName, float fDelta, bool bLoop, bool bLockX, bool bLockY, bool bFreeze, int iTime);
 	void ClearAnimations();
 
-	bool GoTo(const CVector &vecPoint, int iType, int iMode, int iPathfinding, float fRadius = 0.0f, bool bSetAngle = true, float fSpeed = -1.0f, float fDistOffset = 0.0f, DWORD dwStopDelay = 250);
+	bool GoTo(const CVector &vecPoint, int iType, int iMode, int iPathfinding, float fRadius = 0.0f, bool bSetAngle = true, float fSpeed = -1.0f, float fDistOffset = 0.0f, DWORD dwStopDelay = 100);
 	bool GoToPlayer(WORD wPlayerId, int iType, int iMode, int iPathfinding, float fRadius = 0.0f, bool bSetAngle = true, float fSpeed = -1.0f, float fDistOffset = 0.0f, float fDistCheck = 1.5f, DWORD dwStopDelay = 250);
 	bool GoByMovePath(int iPathId, int iPointId, int iType, int iMode, int iPathfinding, float fRadius = 0.0f, bool bSetAngle = true, float fSpeed = -1.0f, float fDistOffset = 0.0f);
 	void UpdateMovingData(CVector vecDestination, float fRadius, bool bSetAngle, float fSpeed, float fDistOffset);
@@ -253,6 +253,7 @@ private:
 	DWORD m_dwMoveStartTime;
 	DWORD m_dwMoveTime;
 	DWORD m_dwMoveStopDelay;
+	DWORD m_dwMoveStopDelay2;
 	DWORD m_dwMeleeDelay;
 	DWORD m_dwKillVehicleTickCount;
 	DWORD m_dwVehicleDeadTick;

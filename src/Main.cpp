@@ -336,31 +336,6 @@ AMX_NATIVE_INFO PluginNatives[] = {
 	{ "MapAndreas_SaveCurrentHMap", CMapAndreasNatives::SaveCurrentHMap },
 	{ "MapAndreas_GetAddress", CMapAndreasNatives::GetAddress },
 
-	// ColAndreas
-	{ "CA_Init", ColAndreasNatives::CA_Init },
-	{ "CA_RayCastLine", ColAndreasNatives::CA_RayCastLine },
-	{ "CA_RayCastLineExtraID", ColAndreasNatives::CA_RayCastLineExtraID },
-	{ "CA_RayCastLineID", ColAndreasNatives::CA_RayCastLineID },
-	{ "CA_RayCastLineAngle", ColAndreasNatives::CA_RayCastLineAngle },
-	{ "CA_RayCastMultiLine", ColAndreasNatives::CA_RayCastMultiLine },
-	{ "CA_RayCastReflectionVector", ColAndreasNatives::CA_RayCastReflectionVector },
-	{ "CA_RayCastLineNormal", ColAndreasNatives::CA_RayCastLineNormal },
-	{ "CA_ContactTest", ColAndreasNatives::CA_ContactTest },
-	{ "CA_CreateObject", ColAndreasNatives::CA_CreateObject },
-	{ "CA_DestroyObject", ColAndreasNatives::CA_DestroyObject },
-	{ "CA_IsValidObject", ColAndreasNatives::CA_IsValidObject },
-	{ "CA_EulerToQuat", ColAndreasNatives::CA_EulerToQuat },
-	{ "CA_QuatToEuler", ColAndreasNatives::CA_QuatToEuler },
-	{ "CA_RemoveBuilding", ColAndreasNatives::CA_RemoveBuilding },
-	{ "CA_SetObjectPos", ColAndreasNatives::CA_SetObjectPos },
-	{ "CA_SetObjectRot", ColAndreasNatives::CA_SetObjectRot },
-	{ "CA_GetModelBoundingSphere", ColAndreasNatives::CA_GetModelBoundingSphere },
-	{ "CA_GetModelBoundingBox", ColAndreasNatives::CA_GetModelBoundingBox },
-	{ "CA_SetObjectExtraID", ColAndreasNatives::CA_SetObjectExtraID },
-	{ "CA_GetObjectExtraID", ColAndreasNatives::CA_GetObjectExtraID },
-	{ "CA_RayCastLineEx", ColAndreasNatives::CA_RayCastLineEx },
-	{ "CA_RayCastLineAngleEx", ColAndreasNatives::CA_RayCastLineAngleEx },
-
 	{ 0, 0 }
 };
 

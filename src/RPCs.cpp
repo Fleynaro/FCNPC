@@ -1,5 +1,6 @@
 #include "Main.hpp"
 
+int RPC_SetPlayerPos = 12;
 int RPC_ShowPlayerForPlayer = 32;
 int RPC_SetPlayerSkillLevel = 34;
 int RPC_ApplyAnimation = 86;
