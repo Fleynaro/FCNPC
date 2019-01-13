@@ -755,11 +755,14 @@ void CPlayerData::Process()
 						m_dwMoveStopDelay2 += m_dwMoveStopDelay;
 					}
 				} else {
-					int iMovePath = m_iMovePath;
+					int iMovePath = m_iMovePath,
+						iMoveType = m_iMoveType;
 					StopMoving();
-					ShowForStreamedPlayers();
-					if (m_iMoveType != MOVE_SPEED_WALK) {
-						ApplyAnimation("PED", "RUN_STOP", 7.1, false, true, true, false, 500);
+					if (!m_bReloading && !m_bAiming && !m_bShooting) {
+						ShowForStreamedPlayers();
+						if (iMoveType != MOVE_TYPE_WALK) {
+							ApplyAnimation("PED", "RUN_STOP", 10.0, false, true, true, false, iMoveType == MOVE_TYPE_SPRINT ? 500 : 200);
+						}
 					}
 					CCallbackManager::OnFinishMovePath(m_wPlayerId, iMovePath);
 				}
